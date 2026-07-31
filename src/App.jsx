@@ -5,10 +5,14 @@ import './App.css'
 function App() {
 
   const [searchText, setSearchText] = useState("")
+  const [exercises, setExercises] = useState([])
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
-    console.log(searchText)
+    setError("")
+    setLoading(true)
 
     const apiKey = import.meta.env.VITE_API_KEY
     const url = `https://edb-with-videos-and-images-by-ascendapi.p.rapidapi.com/api/v1/exercises/search?search=${encodeURIComponent(searchText)}`
@@ -20,7 +24,32 @@ function App() {
         'Content-Type': 'application/json'
       }
     }
+
+    try {
+      const response = await fetch(url, options)
+
+      if (!response.ok) {
+        throw new Error("Something went wrong")
+      }
+      const data = await response.json()
+      console.log(data)
+      if (data.data.length === 0) {
+        throw new Error("No exercise found.")
+      }
+
+      setExercises(data.data)
+      setSearchText("")
+
+    } catch (error) {
+      setError(error.message)
+      console.log(error)
+      setExercises([])
+    } finally {
+      setLoading(false)
+    }
   }
+
+
 
   return (
     <main>
@@ -38,6 +67,14 @@ function App() {
           <button type='Submit'>Search</button>
 
         </form>
+      </section>
+      <section>
+        {exercises.map((exercise) => (
+          <div key={exercise.exerciseId}>
+            <h2>{exercise.name}</h2>
+            <img src={exercise.imageUrl} alt="Exercise GIF" />
+          </div>
+        ))}
       </section>
     </main>
   )
