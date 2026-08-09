@@ -1,1 +1,38 @@
+* {
+    box-sizing: border-box;
+}
 
+.exercise-card {
+    border: 1px solid white;
+    border-radius: 16px;
+    width: 600px;
+}
+
+.exercise-list {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap:30px;
+}
+
+.media-container {
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:20px;
+
+}
+
+.media-placeholder {
+    border: 1px solid white;
+    width: 320px;
+    height:180px;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}
+
+form {
+    margin-bottom: 20px;
+}
