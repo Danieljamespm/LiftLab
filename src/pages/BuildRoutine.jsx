@@ -16,49 +16,27 @@ const BuildRoutine = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-
-
         setLoading(true)
         setError('')
 
         const url = `https://edb-with-videos-and-images-by-ascendapi.p.rapidapi.com/api/v1/exercises?name=${encodeURIComponent(searchText)}&bodyParts=${encodeURIComponent(bodyPart)}&equipments=${encodeURIComponent(equipment)}&limit=100`
         const options = {
-            method: 'GET',
+            method: "GET",
             headers: {
-                'x-rapidapi-key': import.meta.env.VITE_API_KEY,
-                'x-rapidapi-host': 'edb-with-videos-and-images-by-ascendapi.p.rapidapi.com',
-                'Content-Type': 'application/json'
-            }
-        }
+                "x-rapidapi-key": import.meta.env.VITE_API_KEY,
+                "x-rapidapi-host":
+                    "edb-with-videos-and-images-by-ascendapi.p.rapidapi.com",
+            },
+        };
 
         try {
-            console.log("Request URL:", url);
-            console.log("Starting fetch");
-
             const response = await fetch(url, options);
-
-            console.log("Fetch finished");
-            console.log("Status:", response.status);
-            console.log("Response OK:", response.ok);
 
             if (!response.ok) {
                 throw new Error("Something went wrong.");
             }
 
-            console.log("About to parse JSON");
-
             const data = await response.json();
-
-            console.table(
-                data.data.map((exercise) => ({
-                    name: exercise.name,
-                    bodyParts: exercise.bodyParts?.join(", "),
-                    equipments: exercise.equipments?.join(", "),
-                }))
-            );
-
-            console.log("JSON parsed");
-            console.log("API response:", data);
 
             if (data.data.length === 0) {
                 throw new Error("No exercises found.");
@@ -66,10 +44,8 @@ const BuildRoutine = () => {
 
             setExercises(data.data);
         } catch (error) {
-            console.error("Caught error:", error);
             setError(error.message);
         } finally {
-            console.log("Request complete");
             setLoading(false);
         }
     }
