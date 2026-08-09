@@ -7,17 +7,30 @@ const ExerciseCard = ({ exercise }) => {
     return (
         <div>
             <div key={exercise.id}>
-                {video && <video
-                    src={video}
-                    controls
-                    width="320"
-                >
-                </video>}
+
+                <div>
+                    {video ? (
+                        <video
+                            src={video}
+                            controls
+                            width="320"
+                        />
+                    ) : (
+                        <div>No Preview Available</div>
+                    )}
+                </div>
+
                 <h3>{exercise.name}</h3>
-                <span>{exercise.equipment}</span>
-                <span>{exercise.level}</span>
-                <button>View Details</button>
-                <button>+ Add To Routine</button>
+
+                <div>
+                    <span>{exercise.equipment}</span>
+                    <span>{exercise.level}</span>
+                </div>
+
+                <div>
+                    <button>View Details</button>
+                    <button>+ Add To Routine</button>
+                </div>
 
             </div>
         </div>
