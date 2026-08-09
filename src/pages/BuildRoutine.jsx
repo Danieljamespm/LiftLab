@@ -112,7 +112,7 @@ const BuildRoutine = () => {
             {loading && <p>Loading exercises...</p>}
             {error && <p>{error}</p>}
 
-            <div>
+            <div className="exercise-list">
                 {exercises.map((exercise) => (
                     <ExerciseCard
                         key={exercise.id}
