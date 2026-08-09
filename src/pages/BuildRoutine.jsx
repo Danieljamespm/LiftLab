@@ -1,5 +1,6 @@
 import { Link } from "react-router"
 import { useState } from "react"
+import ExerciseCard from "../components/ExerciseCard"
 
 
 
@@ -113,14 +114,10 @@ const BuildRoutine = () => {
 
             <div>
                 {exercises.map((exercise) => (
-                    <div key={exercise.id}>
-                        <h3>{exercise.name}</h3>
-                        <video
-                            src={exercise.videos?.[0]?.url}
-                            controls
-                            width="320"
-                        ></video>
-                    </div>
+                    <ExerciseCard
+                        key={exercise.id}
+                        exercise={exercise}
+                    />
                 ))}
             </div>
         </>
