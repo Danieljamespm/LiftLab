@@ -8,7 +8,7 @@ const BuildRoutine = () => {
 
     const [searchText, setSearchText] = useState('')
     const [exercises, setExercises] = useState([])
-    const [bodyPart, setBodyPart] = useState('')
+    const [muscle, setMuscle] = useState('')
     const [equipment, setEquipment] = useState('')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
@@ -19,14 +19,29 @@ const BuildRoutine = () => {
         setLoading(true)
         setError('')
 
-        const url = `https://edb-with-videos-and-images-by-ascendapi.p.rapidapi.com/api/v1/exercises?name=${encodeURIComponent(searchText)}&bodyParts=${encodeURIComponent(bodyPart)}&equipments=${encodeURIComponent(equipment)}&limit=100`
+        const params = new URLSearchParams()
+
+        if (searchText) {
+            params.append("q", searchText)
+        }
+
+        if (muscle) {
+            params.append("muscle", muscle)
+        }
+
+        if (equipment) {
+            params.append("equipment", equipment)
+        }
+
+        params.append("limit", "10")
+
+        const url = `https://api.exerciseapi.dev/v1/exercises?${params.toString()}`
         const options = {
             method: "GET",
             headers: {
-                "x-rapidapi-key": import.meta.env.VITE_API_KEY,
-                "x-rapidapi-host":
-                    "edb-with-videos-and-images-by-ascendapi.p.rapidapi.com",
-            },
+                "X-API-Key": import.meta.env.VITE_API_KEY,
+
+            }
         };
 
         try {
@@ -38,7 +53,9 @@ const BuildRoutine = () => {
 
             const data = await response.json();
 
-            if (data.data.length === 0) {
+            console.log(data)
+
+            if (data.length === 0) {
                 throw new Error("No exercises found.");
             }
 
@@ -68,12 +85,12 @@ const BuildRoutine = () => {
                 />
 
                 <select
-                    value={bodyPart}
-                    onChange={(e) => setBodyPart(e.target.value)}
+                    value={muscle}
+                    onChange={(e) => setMuscle(e.target.value)}
                 >
                     <option value="">All Muscles</option>
-                    <option value="CHEST">Chest</option>
-                    <option value="BACK">Back</option>
+                    <option value="chest">Chest</option>
+                    <option value="back">Back</option>
                 </select>
 
                 <select
@@ -81,8 +98,8 @@ const BuildRoutine = () => {
                     onChange={(e) => setEquipment(e.target.value)}
                 >
                     <option value="">All equipment</option>
-                    <option value="BARBELL">Barbell</option>
-                    <option value='DUMBBELL'>Dumbbell</option>
+                    <option value="barbell">Barbell</option>
+                    <option value='dumbbell'>Dumbbell</option>
                 </select>
 
                 <button disabled={loading}>
@@ -96,9 +113,13 @@ const BuildRoutine = () => {
 
             <div>
                 {exercises.map((exercise) => (
-                    <div key={exercise.exerciseId}>
+                    <div key={exercise.id}>
                         <h3>{exercise.name}</h3>
-                        <img src={exercise.imageUrl} alt='Exercise reference image' />
+                        <video
+                            src={exercise.videos?.[0]?.url}
+                            controls
+                            width="320"
+                        ></video>
                     </div>
                 ))}
             </div>
