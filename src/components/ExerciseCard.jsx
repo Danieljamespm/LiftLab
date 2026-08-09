@@ -16,7 +16,7 @@ const ExerciseCard = ({ exercise }) => {
                         width="320"
                     />
                 ) : (
-                    <div>No Preview Available</div>
+                    <div className='media-placeholder'>No Preview Available</div>
                 )}
             </div>
 
