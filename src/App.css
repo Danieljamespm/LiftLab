@@ -2,36 +2,65 @@
     box-sizing: border-box;
 }
 
+.exercise-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+}
+
 .exercise-card {
     border: 1px solid white;
     border-radius: 16px;
-    width: 600px;
-}
-
-.exercise-list {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    gap:30px;
-}
-
-.media-container {
-    height: 180px;
+    width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-top:20px;
+    gap: 10px;
+    padding: 5px 8px;
+
 
 }
 
-.media-placeholder {
+.exercise-thumbnail {
     border: 1px solid white;
-    width: 320px;
-    height:180px;
-    display:flex;
-    justify-content:center;
-    align-items: center;
+    height: 60px;
+    width: 60px;
+    border-radius: 20px;
+    margin-left: 5px;
+    padding: 2px;
 }
+
+
+
+.exercise-info {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+}
+
+.exercise-info h3 {
+    margin: 0;
+}
+
+.badge-container {
+    display: flex;
+    gap: 6px;
+}
+
+.badge-container span {
+    background: grey;
+    color: white;
+    border-radius: 8px;
+    padding: 2px;
+    text-transform: capitalize;
+
+}
+
+
 
 form {
     margin-bottom: 20px;
