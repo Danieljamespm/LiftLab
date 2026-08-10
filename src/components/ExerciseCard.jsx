@@ -2,13 +2,13 @@ import React from 'react'
 
 const ExerciseCard = ({ exercise }) => {
 
-    const video = exercise.videos?.[0]?.url
+    const imageBaseUrl = "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/"
 
     return (
 
         <div className="exercise-card">
             <div className="exercise-thumbnail">
-                <p>No Preview</p>
+                <img src={imageBaseUrl + exercise.images[0]} alt="No Preview" />
             </div>
 
             <div className="exercise-info">
