@@ -79,13 +79,14 @@ const BuildRoutine = () => {
             </Link>
 
             <form onSubmit={handleSubmit}>
-                <input type="text"
+                <input className="search-params"
+                    type="text"
                     value={searchText}
                     placeholder="Search Exercise"
                     onChange={(e) => setSearchText(e.target.value)}
                 />
 
-                <select
+                <select className="search-params"
                     value={muscle}
                     onChange={(e) => setMuscle(e.target.value)}
                 >
@@ -94,7 +95,7 @@ const BuildRoutine = () => {
                     <option value="back">Back</option>
                 </select>
 
-                <select
+                <select className="search-params"
                     value={equipment}
                     onChange={(e) => setEquipment(e.target.value)}
                 >
@@ -103,7 +104,8 @@ const BuildRoutine = () => {
                     <option value='dumbbell'>Dumbbell</option>
                 </select>
 
-                <button disabled={loading}>
+                <button className="search-btn"
+                    disabled={loading}>
                     {loading ? "Searching" : "Search"}
                 </button>
 
