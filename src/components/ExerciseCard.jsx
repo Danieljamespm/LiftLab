@@ -6,32 +6,23 @@ const ExerciseCard = ({ exercise }) => {
 
     return (
 
-        <div className='exercise-card'>
-
-            <div className='media-container'>
-                {video ? (
-                    <video
-                        src={video}
-                        controls
-                        width="320"
-                    />
-                ) : (
-                    <div className='media-placeholder'>No Preview Available</div>
-                )}
+        <div className="exercise-card">
+            <div className="exercise-thumbnail">
+                <p>No Preview</p>
             </div>
 
-            <h3>{exercise.name}</h3>
+            <div className="exercise-info">
+                <h3>{exercise.name}</h3>
 
-            <div className='badge-container'>
-                <span>{exercise.equipment}</span>
-                <span>{exercise.level}</span>
+                <div className="badge-container">
+                    <span>{exercise.equipment}</span>
+                    <span>{exercise.level}</span>
+                </div>
             </div>
 
-            <div className='btn-container'>
-                <button>View Details</button>
-                <button>+ Add To Routine</button>
-            </div>
-
+            <button className="details-btn">
+                i
+            </button>
         </div>
 
     )
