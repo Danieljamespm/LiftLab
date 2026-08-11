@@ -115,12 +115,15 @@ const BuildRoutine = () => {
             {error && <p>{error}</p>}
 
             <div className="exercise-list">
-                {exercises.map((exercise) => (
-                    <ExerciseCard
-                        key={exercise.id}
-                        exercise={exercise}
-                    />
-                ))}
+
+                {exercises
+                    .filter((exercise) => exercise.images && exercise.images.length > 0)
+                    .map((exercise) => (
+                        <ExerciseCard
+                            key={exercise.id}
+                            exercise={exercise}
+                        />
+                    ))}
             </div>
         </>
     )
