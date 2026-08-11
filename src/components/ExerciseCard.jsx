@@ -20,7 +20,9 @@ const ExerciseCard = ({ exercise }) => {
                 </div>
             </div>
 
-            <button className="details-btn">
+            <button className="details-btn"
+
+            >
                 i
             </button>
         </div>
