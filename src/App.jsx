@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router'
 import './App.css'
 import HomePage from './pages/HomePage'
 import BuildRoutine from './pages/BuildRoutine'
+import ExerciseDetails from './pages/ExerciseDetails'
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path='/build-routine' element={<BuildRoutine />} />
+        <Route path='/exercise/:id' element={<ExerciseDetails />} />
       </Routes>
     </BrowserRouter>
   )
