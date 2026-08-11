@@ -1,8 +1,11 @@
 import React from 'react'
+import { useNavigate } from 'react-router'
 
 const ExerciseCard = ({ exercise }) => {
 
     const imageBaseUrl = "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/"
+
+    const navigate = useNavigate()
 
     return (
 
@@ -21,7 +24,7 @@ const ExerciseCard = ({ exercise }) => {
             </div>
 
             <button className="details-btn"
-
+                onClick={() => navigate(`/exercise/${exercise.id}`)}
             >
                 i
             </button>
