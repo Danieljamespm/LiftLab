@@ -14,6 +14,7 @@ const BuildRoutine = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
 
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -69,6 +70,7 @@ const BuildRoutine = () => {
     }
 
 
+
     return (
 
         <>
@@ -122,6 +124,7 @@ const BuildRoutine = () => {
                         <ExerciseCard
                             key={exercise.id}
                             exercise={exercise}
+
                         />
                     ))}
             </div>
