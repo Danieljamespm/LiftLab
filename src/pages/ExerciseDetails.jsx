@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router'
 
 const ExererciseDetails = () => {
 
@@ -9,6 +10,8 @@ const ExererciseDetails = () => {
     const [error, setError] = useState("")
 
     const { id } = useParams()
+
+    const navigate = useNavigate()
 
     const imageBaseUrl = "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/"
 
@@ -56,6 +59,13 @@ const ExererciseDetails = () => {
 
     return (
         <div className='details-container'>
+            <div className='back-btn-container'>
+                <button className='back-btn'
+                    onClick={() => navigate(-1)}
+                >
+                    ← Back
+                </button>
+            </div>
             <h1>Exercise Details</h1>
             {loading && <p>Loading Details..</p>}
             {error && <p>{error}</p>}
@@ -67,6 +77,7 @@ const ExererciseDetails = () => {
                         <span>{exercise.level}</span>
                         <span>{exercise.equipment}</span>
                     </div>
+
                     <img
                         className='details-img'
                         src={imageBaseUrl + exercise?.images[0]}
