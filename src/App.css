@@ -2,6 +2,8 @@
     box-sizing: border-box;
 }
 
+/* EXERCISE CARD */
+
 .exercise-list {
     display: flex;
     flex-direction: column;
@@ -74,7 +76,7 @@
 
 }
 
-
+/* BUILD ROUTINE SEARCH */
 
 form {
     margin-bottom: 20px;
@@ -93,4 +95,104 @@ form {
 .search-btn {
     border-radius: 10px;
     border: 2px solid black;
+}
+
+/* EXERCISE DETAILS */
+
+.details-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px;
+
+}
+
+.details-img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 12px;
+
+}
+
+.details-badges {
+    justify-content: center;
+    margin-bottom: 10px;
+
+}
+
+.overview-container {
+    text-align: left;
+    background-color: #1d1f26;
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 20px;
+    color: white;
+}
+
+.pm-container {
+    text-align: left;
+    color: white;
+
+
+}
+
+.pm-container ul {
+    list-style: none;
+    padding-left: 0;
+    text-transform: capitalize;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+}
+
+.pm-container ul li {
+    background-color: grey;
+    border-radius: 8px;
+    padding: 2px;
+}
+
+.sm-container {
+    text-align: left;
+    color: white;
+}
+
+.sm-container ul {
+    list-style: none;
+    padding-left: 0;
+    text-transform: capitalize;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.sm-container ul li {
+    background-color: grey;
+    border-radius: 8px;
+    padding: 2px;
+}
+
+.instruction-container {
+    text-align: left;
+    background-color: #1d1f26;
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 20px;
+    color: white;
+}
+
+.instruction-container ol {
+    padding-left: 8px;
+}
+
+.safety-container {
+    text-align: left;
+    background-color: #1d1f26;
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 20px;
+    color: white;
 }
