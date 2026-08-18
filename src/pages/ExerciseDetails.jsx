@@ -98,7 +98,7 @@ const ExererciseDetails = () => {
                         <h3>Instructions:</h3>
                         <ol>
                             {exercise.instructions.map((instruction, index) => (
-                                <li key={index}>{instruction}</li>
+                                <li key={index}>{instruction.split(" ").slice(1).join(" ")}</li>
                             ))}
                         </ol>
                     </div>
