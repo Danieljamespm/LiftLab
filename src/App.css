@@ -52,6 +52,7 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    text-transform: capitalize;
 
 
 }
@@ -105,6 +106,10 @@ form {
 
 /* EXERCISE DETAILS */
 
+.exercise-name {
+    text-transform: capitalize;
+}
+
 .details-container {
     width: 100%;
     max-width: 900px;
@@ -115,7 +120,7 @@ form {
 
 .details-img {
     width: 100%;
-    max-width: 600px;
+    max-width: 360px;
     height: auto;
     display: block;
     margin: 0 auto;

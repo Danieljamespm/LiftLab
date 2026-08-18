@@ -9,7 +9,7 @@ const BuildRoutine = () => {
 
     const [searchText, setSearchText] = useState('')
     const [exercises, setExercises] = useState([])
-    const [muscle, setMuscle] = useState('')
+    const [bodyPart, setBodyPart] = useState('')
     const [equipment, setEquipment] = useState('')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
@@ -31,24 +31,29 @@ const BuildRoutine = () => {
 
         const params = new URLSearchParams()
 
+
+
         if (searchText) {
-            params.append("q", searchText)
+            params.append("name", searchText)
         }
 
-        if (muscle) {
-            params.append("muscle", muscle)
+        if (bodyPart) {
+            params.append("bodyParts", bodyPart)
         }
 
         if (equipment) {
-            params.append("equipment", equipment)
+            params.append("equipments", equipment)
         }
 
         params.append("limit", "10")
 
-        const url = `https://oss.exercisedb.dev/api/v1/exercises?name=${encodeURIComponent(searchText)}`
+
+
+        const url = `https://oss.exercisedb.dev/api/v1/exercises?${params.toString()}`
 
 
         try {
+
             const response = await fetch(url);
 
             if (!response.ok) {
@@ -91,8 +96,8 @@ const BuildRoutine = () => {
                 />
 
                 <select className="search-params"
-                    value={muscle}
-                    onChange={(e) => setMuscle(e.target.value)}
+                    value={bodyPart}
+                    onChange={(e) => setBodyPart(e.target.value)}
                 >
                     <option value="">All Muscles</option>
                     <option value="chest">Chest</option>
