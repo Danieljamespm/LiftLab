@@ -13,7 +13,7 @@ const ExererciseDetails = () => {
 
     const navigate = useNavigate()
 
-    const imageBaseUrl = "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/"
+
 
     useEffect(() => {
 
@@ -24,14 +24,8 @@ const ExererciseDetails = () => {
             setError("")
 
             try {
-                const response = await fetch(`https://api.exerciseapi.dev/v1/exercises/${id}`,
-                    {
-                        method: "GET",
-                        headers: {
-                            "X-API-Key": import.meta.env.VITE_API_KEY
-                        }
-                    }
-                )
+                const response = await fetch(`https://oss.exercisedb.dev/api/v1/exercises/${id}`)
+
                 if (!response.ok) {
                     throw new Error("Failed to load exercise details..")
                 }
@@ -72,25 +66,22 @@ const ExererciseDetails = () => {
 
             {exercise && (
                 <div>
-                    <h2>{exercise.name}</h2>
+                    <h2 className='exercise-name'>{exercise.name}</h2>
                     <div className='badge-container details-badges'>
-                        <span>{exercise.level}</span>
-                        <span>{exercise.equipment}</span>
+                        <span>{exercise.bodyParts}</span>
+                        <span>{exercise.equipments}</span>
                     </div>
 
                     <img
                         className='details-img'
-                        src={imageBaseUrl + exercise?.images[0]}
+                        src={exercise.gifUrl}
                         alt="Exercise Demo Image" />
 
-                    <div className='overview-container'>
-                        <h3>Overview:</h3>
-                        <p>{exercise.overview}</p>
-                    </div>
+
                     <div className='pm-container'>
                         <h3>Primary Muscles:</h3>
                         <ul>
-                            {exercise.primaryMuscles.map((muscle, index) => (
+                            {exercise.targetMuscles.map((muscle, index) => (
                                 <li key={index}>{muscle}</li>
                             ))}
                         </ul>
@@ -111,10 +102,7 @@ const ExererciseDetails = () => {
                             ))}
                         </ol>
                     </div>
-                    <div className='safety-container'>
-                        <h3>Safety Info:</h3>
-                        <p>{exercise.safetyInfo}</p>
-                    </div>
+
 
                 </div>
             )}

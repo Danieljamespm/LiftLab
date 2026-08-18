@@ -24,7 +24,7 @@ const ExerciseCard = ({ exercise, onMediaError }) => {
             </div>
 
             <button className="details-btn"
-                onClick={() => navigate(`/exercise/${exercise.id}`)}
+                onClick={() => navigate(`/exercise/${exercise.exerciseId}`)}
             >
                 i
             </button>
