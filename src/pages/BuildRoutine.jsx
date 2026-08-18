@@ -45,7 +45,7 @@ const BuildRoutine = () => {
             params.append("equipments", equipment)
         }
 
-        params.append("limit", "10")
+        params.append("limit", "15")
 
 
 
@@ -102,6 +102,12 @@ const BuildRoutine = () => {
                     <option value="">All Muscles</option>
                     <option value="chest">Chest</option>
                     <option value="back">Back</option>
+                    <option value="shoulders">Shoulders</option>
+                    <option value="upper arms">Arms</option>
+                    <option value="upper legs">Upper Legs</option>
+                    <option value="lower legs">Lower Legs</option>
+                    <option value="waist">Core</option>
+
                 </select>
 
                 <select className="search-params"
@@ -110,7 +116,10 @@ const BuildRoutine = () => {
                 >
                     <option value="">All equipment</option>
                     <option value="barbell">Barbell</option>
-                    <option value='dumbbell'>Dumbbell</option>
+                    <option value="dumbbell">Dumbbell</option>
+                    <option value="cable">Cable</option>
+                    <option value="kettlebell">Kettlebell</option>
+                    <option value="resistance band">Resistance Band</option>
                 </select>
 
                 <button className="search-btn"
