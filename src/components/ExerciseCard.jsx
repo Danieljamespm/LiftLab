@@ -1,9 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router'
 
-const ExerciseCard = ({ exercise }) => {
+const ExerciseCard = ({ exercise, onMediaError }) => {
 
-    const imageBaseUrl = "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/"
+
 
     const navigate = useNavigate()
 
@@ -11,15 +11,15 @@ const ExerciseCard = ({ exercise }) => {
 
         <div className="exercise-card">
             <div className="exercise-thumbnail">
-                <img src={imageBaseUrl + exercise.images[0]} alt="No Preview" />
+                <img src={exercise.gifUrl} onError={() => onMediaError(exercise.exerciseId)} />
             </div>
 
             <div className="exercise-info">
                 <h3>{exercise.name}</h3>
 
                 <div className="badge-container">
-                    <span>{exercise.equipment}</span>
-                    <span>{exercise.level}</span>
+                    <span>{exercise.equipments}</span>
+                    <span>{exercise.bodyParts}</span>
                 </div>
             </div>
 

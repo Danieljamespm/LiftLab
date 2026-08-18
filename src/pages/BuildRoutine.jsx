@@ -14,6 +14,14 @@ const BuildRoutine = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
 
+    const handleMediaError = (badId) => {
+        setExercises((currentExercises) =>
+            currentExercises.filter(
+                (exercise) => exercise.exerciseId !== badId
+            )
+        )
+    }
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -37,17 +45,11 @@ const BuildRoutine = () => {
 
         params.append("limit", "10")
 
-        const url = `https://api.exerciseapi.dev/v1/exercises?${params.toString()}`
-        const options = {
-            method: "GET",
-            headers: {
-                "X-API-Key": import.meta.env.VITE_API_KEY,
+        const url = `https://oss.exercisedb.dev/api/v1/exercises?name=${encodeURIComponent(searchText)}`
 
-            }
-        };
 
         try {
-            const response = await fetch(url, options);
+            const response = await fetch(url);
 
             if (!response.ok) {
                 throw new Error("Something went wrong.");
@@ -56,12 +58,12 @@ const BuildRoutine = () => {
             const data = await response.json();
 
             console.log(data)
-
+            setExercises(data.data)
             if (data.length === 0) {
                 throw new Error("No exercises found.");
             }
 
-            setExercises(data.data);
+
         } catch (error) {
             setError(error.message);
         } finally {
@@ -118,15 +120,14 @@ const BuildRoutine = () => {
 
             <div className="exercise-list">
 
-                {exercises
-                    .filter((exercise) => exercise.images && exercise.images.length > 0)
-                    .map((exercise) => (
-                        <ExerciseCard
-                            key={exercise.id}
-                            exercise={exercise}
+                {exercises.map((exercise) => (
+                    <ExerciseCard
+                        key={exercise.exerciseId}
+                        exercise={exercise}
+                        onMediaError={handleMediaError}
 
-                        />
-                    ))}
+                    />
+                ))}
             </div>
         </>
     )
