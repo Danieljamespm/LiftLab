@@ -1,6 +1,7 @@
 import { Link } from "react-router"
 import { useState } from "react"
 import ExerciseCard from "../components/ExerciseCard"
+import Toast from "../components/Toast"
 
 
 
@@ -147,7 +148,7 @@ const BuildRoutine = () => {
 
             {loading && <p>Loading exercises...</p>}
             {error && <p>{error}</p>}
-            {toastMessage && <p>{toastMessage}</p>}
+            {toastMessage && <Toast message={toastMessage} />}
 
             <div className="exercise-list">
 
