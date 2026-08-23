@@ -226,3 +226,17 @@ form {
     border-radius: 12px;
     color: var(--color-accent);
 }
+
+
+/* TOAST */
+.toast {
+    background-color: white;
+    color: black;
+    border-radius: 12px;
+    padding: 8px 16px;
+    margin: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: capitalize;
+}
