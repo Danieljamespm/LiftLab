@@ -11,6 +11,7 @@ const BuildRoutine = () => {
     const [searchText, setSearchText] = useState('')
     const [exercises, setExercises] = useState([])
     const [routineExercises, setRoutineExercises] = useState([])
+    const [routineName, setRoutineName] = useState("")
     const [toastMessage, setToastMessage] = useState("")
     const [bodyPart, setBodyPart] = useState('')
     const [equipment, setEquipment] = useState('')
@@ -36,6 +37,10 @@ const BuildRoutine = () => {
         setTimeout(() => setToastMessage(""), 2000)
 
     }
+
+    const exerciseRoutine = exercises.filter((exercise) =>
+        routineExercises.includes(exercise.exerciseId)
+    )
 
     console.log(routineExercises)
 
@@ -103,6 +108,12 @@ const BuildRoutine = () => {
             <Link to={"/"}>
                 Back to Home
             </Link>
+
+            <input type="text"
+                placeholder="Routine Name"
+                value={routineName}
+                onChange={(e) => setRoutineName(e.target.value)}
+            />
 
             <form onSubmit={handleSubmit}>
                 <input className="search-params"
