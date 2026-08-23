@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router'
 
-const ExerciseCard = ({ exercise, onMediaError }) => {
+const ExerciseCard = ({ exercise, onMediaError, onAddExercise }) => {
 
 
 
@@ -22,6 +22,12 @@ const ExerciseCard = ({ exercise, onMediaError }) => {
                     <span>{exercise.bodyParts}</span>
                 </div>
             </div>
+
+            <button className='add-btn'
+                onClick={() => onAddExercise(exercise.exerciseId, exercise.name)}
+            >
+                +
+            </button>
 
             <button className="details-btn"
                 onClick={() => navigate(`/exercise/${exercise.exerciseId}`)}
