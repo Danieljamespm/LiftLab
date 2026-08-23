@@ -9,6 +9,8 @@ const BuildRoutine = () => {
 
     const [searchText, setSearchText] = useState('')
     const [exercises, setExercises] = useState([])
+    const [routineExercises, setRoutineExercises] = useState([])
+    const [toastMessage, setToastMessage] = useState("")
     const [bodyPart, setBodyPart] = useState('')
     const [equipment, setEquipment] = useState('')
     const [loading, setLoading] = useState(false)
@@ -21,6 +23,20 @@ const BuildRoutine = () => {
             )
         )
     }
+
+    const handleAddExercise = (exerciseId, exerciseName) => {
+        if (routineExercises.includes(exerciseId)) {
+            return
+        }
+        setRoutineExercises([...routineExercises, exerciseId])
+
+        setToastMessage(`${exerciseName} successfully added to routine.`)
+
+        setTimeout(() => setToastMessage(""), 2000)
+
+    }
+
+    console.log(routineExercises)
 
 
     const handleSubmit = async (e) => {
@@ -131,6 +147,7 @@ const BuildRoutine = () => {
 
             {loading && <p>Loading exercises...</p>}
             {error && <p>{error}</p>}
+            {toastMessage && <p>{toastMessage}</p>}
 
             <div className="exercise-list">
 
@@ -139,6 +156,7 @@ const BuildRoutine = () => {
                         key={exercise.exerciseId}
                         exercise={exercise}
                         onMediaError={handleMediaError}
+                        onAddExercise={handleAddExercise}
 
                     />
                 ))}
