@@ -6,11 +6,10 @@ import Toast from "../components/Toast"
 
 
 
-const BuildRoutine = ({ routineExercises, setRoutineExercises }) => {
+const BuildRoutine = ({ routineExercises, setRoutineExercises, routineName, setRoutineName }) => {
 
     const [searchText, setSearchText] = useState('')
     const [exercises, setExercises] = useState([])
-    const [routineName, setRoutineName] = useState("")
     const [toastMessage, setToastMessage] = useState("")
     const [bodyPart, setBodyPart] = useState('')
     const [equipment, setEquipment] = useState('')
@@ -31,7 +30,7 @@ const BuildRoutine = ({ routineExercises, setRoutineExercises }) => {
         }
         setRoutineExercises([...routineExercises, exercise])
 
-        setToastMessage(`${exercise.name} successfully added to routine.`)
+        setToastMessage(`${exercise.name} successfully added to ${routineName}.`)
 
         setTimeout(() => setToastMessage(""), 2000)
 
@@ -110,7 +109,7 @@ const BuildRoutine = ({ routineExercises, setRoutineExercises }) => {
             </Link>
 
             <input type="text"
-                className="routine"
+                className="routine-name"
                 placeholder="Routine Name"
                 value={routineName}
                 onChange={(e) => setRoutineName(e.target.value)}

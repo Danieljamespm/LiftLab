@@ -11,16 +11,23 @@ import ManageRoutines from './pages/ManageRoutines'
 function App() {
 
   const [routineExercises, setRoutineExercises] = useState([])
+  const [routineName, setRoutineName] = useState("")
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path='/build-routine' element={<BuildRoutine routineExercises={routineExercises} setRoutineExercises={setRoutineExercises} />} />
+        <Route path='/build-routine' element={<BuildRoutine
+          routineExercises={routineExercises}
+          setRoutineExercises={setRoutineExercises}
+          routineName={routineName}
+          setRoutineName={setRoutineName} />} />
         <Route path='/exercise/:id' element={<ExerciseDetails />} />
         <Route path='/ascend-test' element={<AscendTest />} />
         <Route path='/workoutx-test' element={<WorkoutXTest />} />
-        <Route path='/routines' element={<ManageRoutines routineExercises={routineExercises} />} />
+        <Route path='/routines' element={<ManageRoutines
+          routineExercises={routineExercises}
+          routineName={routineName} />} />
       </Routes>
     </BrowserRouter>
   )
