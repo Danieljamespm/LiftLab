@@ -20,7 +20,7 @@ function App() {
         <Route path='/exercise/:id' element={<ExerciseDetails />} />
         <Route path='/ascend-test' element={<AscendTest />} />
         <Route path='/workoutx-test' element={<WorkoutXTest />} />
-        <Route path='/routines' element={<ManageRoutines />} />
+        <Route path='/routines' element={<ManageRoutines routineExercises={routineExercises} />} />
       </Routes>
     </BrowserRouter>
   )
