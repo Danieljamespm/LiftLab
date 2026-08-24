@@ -6,11 +6,10 @@ import Toast from "../components/Toast"
 
 
 
-const BuildRoutine = () => {
+const BuildRoutine = ({ routineExercises, setRoutineExercises }) => {
 
     const [searchText, setSearchText] = useState('')
     const [exercises, setExercises] = useState([])
-    const [routineExercises, setRoutineExercises] = useState([])
     const [routineName, setRoutineName] = useState("")
     const [toastMessage, setToastMessage] = useState("")
     const [bodyPart, setBodyPart] = useState('')
@@ -38,9 +37,7 @@ const BuildRoutine = () => {
 
     }
 
-    const exerciseRoutine = exercises.filter((exercise) =>
-        routineExercises.includes(exercise.exerciseId)
-    )
+
 
     console.log(routineExercises)
 

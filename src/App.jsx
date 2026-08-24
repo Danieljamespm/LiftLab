@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router'
-
+import { useState } from 'react'
 import './App.css'
 import HomePage from './pages/HomePage'
 import BuildRoutine from './pages/BuildRoutine'
@@ -10,11 +10,13 @@ import ManageRoutines from './pages/ManageRoutines'
 
 function App() {
 
+  const [routineExercises, setRoutineExercises] = useState([])
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path='/build-routine' element={<BuildRoutine />} />
+        <Route path='/build-routine' element={<BuildRoutine routineExercises={routineExercises} setRoutineExercises={setRoutineExercises} />} />
         <Route path='/exercise/:id' element={<ExerciseDetails />} />
         <Route path='/ascend-test' element={<AscendTest />} />
         <Route path='/workoutx-test' element={<WorkoutXTest />} />
