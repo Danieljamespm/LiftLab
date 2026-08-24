@@ -24,7 +24,7 @@ const ExerciseCard = ({ exercise, onMediaError, onAddExercise }) => {
             </div>
 
             <button className='add-btn'
-                onClick={() => onAddExercise(exercise.exerciseId, exercise.name)}
+                onClick={() => onAddExercise(exercise)}
             >
                 +
             </button>

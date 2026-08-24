@@ -26,13 +26,13 @@ const BuildRoutine = () => {
         )
     }
 
-    const handleAddExercise = (exerciseId, exerciseName) => {
-        if (routineExercises.includes(exerciseId)) {
+    const handleAddExercise = (exercise) => {
+        if (routineExercises.includes(exercise.exerciseId)) {
             return
         }
-        setRoutineExercises([...routineExercises, exerciseId])
+        setRoutineExercises([...routineExercises, exercise])
 
-        setToastMessage(`${exerciseName} successfully added to routine.`)
+        setToastMessage(`${exercise.name} successfully added to routine.`)
 
         setTimeout(() => setToastMessage(""), 2000)
 
@@ -110,6 +110,7 @@ const BuildRoutine = () => {
             </Link>
 
             <input type="text"
+                className="routine"
                 placeholder="Routine Name"
                 value={routineName}
                 onChange={(e) => setRoutineName(e.target.value)}
