@@ -108,6 +108,9 @@ const BuildRoutine = () => {
             <Link to={"/"}>
                 Back to Home
             </Link>
+            <Link to={"/routines"}>
+                View Routines
+            </Link>
 
             <input type="text"
                 className="routine"
