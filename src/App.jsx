@@ -12,6 +12,7 @@ function App() {
 
   const [routineExercises, setRoutineExercises] = useState([])
   const [routineName, setRoutineName] = useState("")
+  const [savedRoutines, setSavedRoutines] = useState([])
 
   return (
     <BrowserRouter>
@@ -27,7 +28,12 @@ function App() {
         <Route path='/workoutx-test' element={<WorkoutXTest />} />
         <Route path='/routines' element={<ManageRoutines
           routineExercises={routineExercises}
-          routineName={routineName} />} />
+          routineName={routineName}
+          savedRoutines={savedRoutines}
+          setSavedRoutines={setSavedRoutines}
+          setRoutineExercises={setRoutineExercises}
+          setRoutineName={setRoutineName} />}
+        />
       </Routes>
     </BrowserRouter>
   )

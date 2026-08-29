@@ -260,3 +260,10 @@ form {
     margin: 8px 12px;
     border-radius: 12px;
 }
+
+.manage-routine {
+    border: 1px solid var(--color-accent);
+    padding: 8px 16px;
+    margin: 8px 12px;
+    border-radius: 12px;
+}
