@@ -82,6 +82,12 @@
 
 }
 
+.details-btn:hover {
+    background-color: white;
+    color: var(--color-accent);
+    cursor: pointer;
+}
+
 /* BUILD ROUTINE SEARCH */
 
 form {
@@ -102,11 +108,24 @@ form {
     border: none;
 }
 
+.search-params:hover {
+    cursor: pointer;
+}
+
 .search-btn {
     border-radius: 10px;
     border: 2px solid black;
     background-color: var(--color-accent);
     padding: 10px;
+}
+
+.search-btn:hover,
+.save-btn:hover,
+.dropdown:hover,
+.link-btn:hover {
+    cursor: pointer;
+    background-color: white;
+    color: var(--color-accent);
 }
 
 .routine-name {
@@ -266,4 +285,37 @@ form {
     padding: 8px 16px;
     margin: 8px 12px;
     border-radius: 12px;
+}
+
+.save-btn {
+    border-radius: 10px;
+    border: 2px solid black;
+    background-color: var(--color-accent);
+    padding: 10px;
+}
+
+/* HOMEPAGE */
+
+.dropdown {
+    border-radius: 10px;
+    border: 2px solid black;
+    background-color: var(--color-accent);
+    padding: 10px;
+    color: white;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.link-btn {
+    border-radius: 10px;
+    border: 2px solid black;
+    background-color: var(--color-accent);
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    width: fit-content;
+    margin: 0 auto;
 }

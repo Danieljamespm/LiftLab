@@ -20,7 +20,7 @@ const ManageRoutines = ({ routineExercises, routineName, savedRoutines, setSaved
         <div>
             <h1>ManageRoutines</h1>
 
-            <Link to={"/build-routine"}>
+            <Link to={"/build-routine"} className='link-btn'>
                 Back to Build Routine
             </Link>
 
@@ -55,14 +55,16 @@ const ManageRoutines = ({ routineExercises, routineName, savedRoutines, setSaved
 
                     ))}
 
-                    <button onClick={handleSavedRoutines}>
+                    <button className='save-btn'
+
+                        onClick={handleSavedRoutines}>
                         Save Routine
                     </button>
                 </div>
 
                 <div>
                     {savedRoutines.map((routines) => (
-                        <div className='manage-routine '>
+                        <div className='manage-routine ' key={routines.routineName}>
                             <h2>{routines.routineName}</h2>
 
                             {routines.routineExercises.map((exercise) => (

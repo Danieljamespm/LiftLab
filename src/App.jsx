@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import HomePage from './pages/HomePage'
 import BuildRoutine from './pages/BuildRoutine'
@@ -10,14 +10,22 @@ import ManageRoutines from './pages/ManageRoutines'
 
 function App() {
 
+
+
   const [routineExercises, setRoutineExercises] = useState([])
   const [routineName, setRoutineName] = useState("")
-  const [savedRoutines, setSavedRoutines] = useState([])
+  const [savedRoutines, setSavedRoutines] = useState(JSON.parse(localStorage.getItem("savedRoutines")) || [])
+
+  useEffect(() => {
+    localStorage.setItem("savedRoutines", JSON.stringify(savedRoutines))
+  }, [savedRoutines])
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage
+          savedRoutines={savedRoutines}
+        />} />
         <Route path='/build-routine' element={<BuildRoutine
           routineExercises={routineExercises}
           setRoutineExercises={setRoutineExercises}

@@ -99,12 +99,12 @@ const BuildRoutine = ({ routineExercises, setRoutineExercises, routineName, setR
     return (
 
         <>
-            <div>BuildRoutine</div>
+            <h1>BuildRoutine</h1>
 
-            <Link to={"/"}>
+            <Link to={"/"} className="link-btn">
                 Back to Home
             </Link>
-            <Link to={"/routines"}>
+            <Link to={"/routines"} className="link-btn">
                 View Routines
             </Link>
 
