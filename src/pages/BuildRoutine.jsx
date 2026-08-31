@@ -38,7 +38,22 @@ const BuildRoutine = ({ routineExercises, setRoutineExercises, routineName, setR
 
 
 
-    console.log(routineExercises)
+    const getSearchHint = (searchText) => {
+        const search = searchText.toLowerCase().trim()
+
+        const commonSearchTerms = {
+            "push up": "chest",
+            "push-up": "chest",
+            "pushup": "chest",
+            "bench press": "chest",
+            "lateral raise": "shoulders",
+            "lat raise": "shoulders",
+            "bicep curl": "upper arms",
+            "curl": "upper arms",
+        }
+
+        return commonSearchTerms[search]
+    }
 
 
     const handleSubmit = async (e) => {
@@ -55,15 +70,19 @@ const BuildRoutine = ({ routineExercises, setRoutineExercises, routineName, setR
             params.append("name", searchText)
         }
 
+        const searchHint = getSearchHint(searchText)
+
         if (bodyPart) {
             params.append("bodyParts", bodyPart)
+        } else if (searchHint) {
+            params.append("bodyParts", searchHint)
         }
 
         if (equipment) {
             params.append("equipments", equipment)
         }
 
-        params.append("limit", "15")
+        params.append("limit", "25")
 
 
 
@@ -81,7 +100,71 @@ const BuildRoutine = ({ routineExercises, setRoutineExercises, routineName, setR
             const data = await response.json();
 
             console.log(data)
-            setExercises(data.data)
+            const normalizeText = (text) => {
+                return text
+                    .toLowerCase()
+                    .replaceAll("-", " ")
+                    .replaceAll("cross over", "crossover")
+                    .trim()
+            }
+
+            const normalizedSearch = normalizeText(searchText)
+
+            const filteredExercises = data.data.filter((exercise) => {
+                const exerciseName = normalizeText(exercise.name)
+
+                return exerciseName.includes(normalizedSearch)
+            })
+
+            const commonExercises = [
+                "squat",
+                "dumbbell squat",
+                "barbell full squat",
+                "deadlift",
+                "barbell deadlift",
+                "dumbbell deadlift",
+                "bench press",
+                "push up",
+                "lateral raise",
+                "dumbbell standing biceps curl",
+                "barbell curl",
+                "cable crossover",
+            ]
+
+            const rankedExercises = [...filteredExercises].sort((a, b) => {
+                const nameA = normalizeText(a.name)
+                const nameB = normalizeText(b.name)
+                const aIsCommon = commonExercises.includes(nameA)
+                const bIsCommon = commonExercises.includes(nameB)
+
+                if (nameA === normalizedSearch && nameB !== normalizedSearch) {
+                    return -1
+                }
+
+                if (nameB === normalizedSearch && nameA !== normalizedSearch) {
+                    return 1
+                }
+
+                if (aIsCommon && !bIsCommon) {
+                    return -1
+                }
+
+                if (bIsCommon && !aIsCommon) {
+                    return 1
+                }
+
+                if (nameA.startsWith(normalizedSearch) && !nameB.startsWith(normalizedSearch)) {
+                    return -1
+                }
+
+                if (nameB.startsWith(normalizedSearch) && !nameA.startsWith(normalizedSearch)) {
+                    return 1
+                }
+
+                return 0
+            })
+
+            setExercises(rankedExercises)
             if (data.length === 0) {
                 throw new Error("No exercises found.");
             }
