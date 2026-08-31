@@ -3,7 +3,24 @@
 }
 
 :root {
-    --color-accent: #6ea8fe;
+    --bg-primary: #050605;
+    --bg-secondary: #0b0d0b;
+    --bg-card: #101310;
+
+    --green-primary: #9cff00;
+    --green-hover: #82d900;
+    --green-muted: #72bd00;
+
+    --text-primary: #f7f9f5;
+    --text-secondary: #a6ada3;
+
+    --border: #35591d;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    margin: 0;
 }
 
 /* EXERCISE CARD */
@@ -12,12 +29,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     padding: 0 16px;
+
 }
 
 .exercise-card {
-    border: 1px solid white;
+    border: 1px solid var(--border);
+    background-color: var(--bg-card);
     border-radius: 16px;
     width: 100%;
     display: flex;
@@ -28,8 +47,9 @@
 
 }
 
+
 .exercise-thumbnail {
-    border: 1px solid white;
+    border: 1px solid var(--border);
     height: 60px;
     width: 60px;
     border-radius: 20px;
@@ -67,8 +87,8 @@
 }
 
 .badge-container span {
-    background: #6ea8fe;
-    color: white;
+    background: var(--green-muted);
+    color: var(--bg-primary);
     border-radius: 8px;
     padding: 2px;
     text-transform: capitalize;
@@ -76,16 +96,22 @@
 }
 
 .details-btn {
-    border: 2px solid grey;
+    border: 2px solid var(--green-muted);
     border-radius: 10px;
-    background-color: var(--color-accent);
+    background-color: var(--bg-primary);
 
 }
 
-.details-btn:hover {
-    background-color: white;
-    color: var(--color-accent);
+.details-btn:hover,
+.add-btn:hover {
+    background-color: var(--green-hover);
+    color: var(--bg-primary);
     cursor: pointer;
+}
+
+.add-btn {
+    background-color: var(--bg-primary);
+    border: 2px solid var(--green-muted);
 }
 
 /* BUILD ROUTINE SEARCH */
@@ -114,8 +140,9 @@ form {
 
 .search-btn {
     border-radius: 10px;
-    border: 2px solid black;
-    background-color: var(--color-accent);
+    border: 2px solid var(--border);
+    background-color: var(--green-primary);
+    color: var(--bg-primary);
     padding: 10px;
 }
 
@@ -124,8 +151,8 @@ form {
 .dropdown:hover,
 .link-btn:hover {
     cursor: pointer;
-    background-color: white;
-    color: var(--color-accent);
+    background-color: var(--green-hover);
+
 }
 
 .routine-name {
@@ -166,7 +193,10 @@ form {
 .details-badges {
     justify-content: center;
     margin-bottom: 10px;
+}
 
+.details-badges span {
+    background-color: var(--green-primary);
 }
 
 .overview-container {
@@ -196,7 +226,8 @@ form {
 }
 
 .pm-container ul li {
-    background-color: var(--color-accent);
+    background-color: var(--green-primary);
+    color: var(--bg-primary);
     border-radius: 8px;
     padding: 2px;
 }
@@ -216,14 +247,16 @@ form {
 }
 
 .sm-container ul li {
-    background-color: var(--color-accent);
+    background-color: var(--green-primary);
+    color: var(--bg-primary);
     border-radius: 8px;
     padding: 2px;
 }
 
 .instruction-container {
     text-align: left;
-    background-color: #1d1f26;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 18px;
     margin-top: 20px;
@@ -252,9 +285,14 @@ form {
     cursor: pointer;
     font-size: 0.95rem;
     padding: 8px 18px;
-    border: 1px solid var(--color-accent);
+    border: 1px solid var(--border);
     border-radius: 12px;
-    color: var(--color-accent);
+    color: var(--green-primary);
+}
+
+.back-btn:hover {
+    background-color: var(--green-hover);
+    color: var(--bg-primary);
 }
 
 
@@ -274,14 +312,14 @@ form {
 /* MANAGE ROUTINES */
 
 .routine {
-    border: 1px solid white;
+    border: 1px solid var(--border);
     padding: 8px 16px;
     margin: 8px 12px;
     border-radius: 12px;
 }
 
 .manage-routine {
-    border: 1px solid var(--color-accent);
+    border: 1px solid var(--border);
     padding: 8px 16px;
     margin: 8px 12px;
     border-radius: 12px;
@@ -289,8 +327,9 @@ form {
 
 .save-btn {
     border-radius: 10px;
-    border: 2px solid black;
-    background-color: var(--color-accent);
+    border: 2px solid var(--border);
+    background-color: var(--green-primary);
+    color: var(--bg-primary);
     padding: 10px;
 }
 
@@ -298,10 +337,10 @@ form {
 
 .dropdown {
     border-radius: 10px;
-    border: 2px solid black;
-    background-color: var(--color-accent);
+    border: 2px solid var(--border);
+    background-color: var(--green-primary);
     padding: 10px;
-    color: white;
+    color: var(--bg-primary);
     margin: 10px;
     display: flex;
     justify-content: center;
@@ -310,11 +349,11 @@ form {
 
 .link-btn {
     border-radius: 10px;
-    border: 2px solid black;
-    background-color: var(--color-accent);
+    border: 2px solid var(--border);
+    background-color: var(--green-primary);
     padding: 10px;
     text-decoration: none;
-    color: white;
+    color: var(--bg-primary);
     display: inline-block;
     width: fit-content;
     margin: 0 auto;
