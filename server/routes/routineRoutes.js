@@ -1,11 +1,14 @@
 const express = require("express")
-const { getRoutines } = require("../controllers/routineController")
-const { createRoutine } = require("../controllers/routineController")
+const { getRoutines,
+    getRoutineById,
+    createRoutine,
+} = require("../controllers/routineController")
+
 
 const router = express.Router()
 
 router.get("/", getRoutines)
-
+router.get("/:id", getRoutineById)
 router.post("/", createRoutine)
 
 module.exports = router
