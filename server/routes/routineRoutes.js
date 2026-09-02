@@ -1,21 +1,11 @@
 const express = require("express")
+const { getRoutines } = require("../controllers/routineController")
+const { createRoutine } = require("../controllers/routineController")
 
 const router = express.Router()
 
-router.get("/", (req, res) => {
-    res.json({
-        message: "Routine route is working"
-    })
-})
+router.get("/", getRoutines)
 
-router.post("/", (req, res) => {
-    console.log(req.body)
-
-    res.json({
-        message: "Routine recieved",
-        routine: req.body,
-    })
-})
-
+router.post("/", createRoutine)
 
 module.exports = router
