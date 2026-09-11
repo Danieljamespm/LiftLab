@@ -30,6 +30,12 @@ const deleteRoutine = async (req, res) => {
     res.status(200).json(routine)
 }
 
+const updateRoutine = async (req, res) => {
+    const routine = await Routine.findByIdAndUpdate(req.params.id, req.body, { new: true })
+
+    res.status(200).json(routine)
+}
+
 
 
 
@@ -49,5 +55,7 @@ module.exports = {
     createRoutine,
     getRoutineById,
     deleteRoutine,
+    updateRoutine,
+
 
 }
