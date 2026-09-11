@@ -24,6 +24,12 @@ const getRoutineById = async (req, res) => {
 }
 
 
+const deleteRoutine = async (req, res) => {
+    const routine = await Routine.findByIdAndDelete(req.params.id)
+
+    res.status(200).json(routine)
+}
+
 
 
 
@@ -41,6 +47,7 @@ const getRoutineById = async (req, res) => {
 module.exports = {
     getRoutines,
     createRoutine,
-    getRoutineById
+    getRoutineById,
+    deleteRoutine,
 
 }
