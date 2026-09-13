@@ -5,11 +5,12 @@ const { getRoutines,
     deleteRoutine,
     updateRoutine,
 } = require("../controllers/routineController")
+const protect = require("../middleware/authMiddleware")
 
 
 const router = express.Router()
 
-router.get("/", getRoutines)
+router.get("/", protect, getRoutines)
 router.get("/:id", getRoutineById)
 router.post("/", createRoutine)
 router.delete("/:id", deleteRoutine)
