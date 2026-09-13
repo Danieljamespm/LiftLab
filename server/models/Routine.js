@@ -28,6 +28,12 @@ const routineSchema = new mongoose.Schema({
     routineExercises: {
         type: [exerciseSchema],
         default: [],
+    },
+
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User"
     }
 
 })
