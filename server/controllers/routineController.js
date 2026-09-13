@@ -3,7 +3,7 @@ const Routine = require("../models/Routine")
 const getRoutines = async (req, res) => {
     const routines = await Routine.find()
 
-    res.status(201).json(routines)
+    res.status(200).json(routines)
 }
 
 const createRoutine = async (req, res) => {
