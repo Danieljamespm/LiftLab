@@ -13,7 +13,8 @@ const createRoutine = async (req, res) => {
 
         const routine = await Routine.create({
             routineName,
-            routineExercises
+            routineExercises,
+            user: req.user._id
         })
 
         res.status(201).json(routine)
