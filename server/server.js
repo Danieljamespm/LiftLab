@@ -3,7 +3,7 @@ require("dotenv").config()
 const express = require("express")
 const connectDB = require("./config/db")
 const routineRoutes = require("./routes/routineRoutes")
-const userRoutes = reequire("./routes/userRoutes")
+const userRoutes = require("./routes/userRoutes")
 
 
 
