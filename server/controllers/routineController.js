@@ -1,7 +1,7 @@
 const Routine = require("../models/Routine")
 
 const getRoutines = async (req, res) => {
-    const routines = await Routine.find()
+    const routines = await Routine.find({ user: req.user._id })
 
     res.status(200).json(routines)
 }
