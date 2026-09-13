@@ -12,7 +12,7 @@ const router = express.Router()
 
 router.get("/", protect, getRoutines)
 router.get("/:id", getRoutineById)
-router.post("/", createRoutine)
+router.post("/", protect, createRoutine)
 router.delete("/:id", deleteRoutine)
 router.patch("/:id", updateRoutine)
 
