@@ -7,6 +7,7 @@ const getRoutines = async (req, res) => {
 
         res.status(200).json(routines)
     } catch (error) {
+        console.lof(error)
         return res.status(500).json({ message: "Server error" })
     }
 
