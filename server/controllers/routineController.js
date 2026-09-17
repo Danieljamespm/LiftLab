@@ -27,7 +27,7 @@ const createRoutine = async (req, res) => {
 const getRoutineById = async (req, res) => {
 
     try {
-        const routine = await Routine.finOne({ _id: req.params.id, user: req.user._id })
+        const routine = await Routine.findOne({ _id: req.params.id, user: req.user._id })
 
         if (!routine) {
             return res.status(404).json({ message: "Routine not found" })
@@ -72,6 +72,7 @@ const updateRoutine = async (req, res) => {
 
         res.status(200).json(routine)
     } catch (error) {
+
         return res.status(400).json({ message: "Invalid routine ID" })
     }
 
