@@ -1,9 +1,15 @@
 const Routine = require("../models/Routine")
 
 const getRoutines = async (req, res) => {
-    const routines = await Routine.find({ user: req.user._id })
 
-    res.status(200).json(routines)
+    try {
+        const routines = await Routine.find({ user: req.user._id })
+
+        res.status(200).json(routines)
+    } catch (error) {
+        return res.status(500).json({ message: "Server error" })
+    }
+
 }
 
 const createRoutine = async (req, res) => {
@@ -77,17 +83,6 @@ const updateRoutine = async (req, res) => {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
