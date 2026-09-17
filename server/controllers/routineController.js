@@ -27,7 +27,7 @@ const createRoutine = async (req, res) => {
 const getRoutineById = async (req, res) => {
 
     try {
-        const routine = await Routine.findById(req.params.id)
+        const routine = await Routine.finOne({ _id: req.params.id, user: req.user._id })
 
         if (!routine) {
             return res.status(404).json({ message: "Routine not found" })
@@ -47,7 +47,7 @@ const getRoutineById = async (req, res) => {
 const deleteRoutine = async (req, res) => {
 
     try {
-        const routine = await Routine.findByIdAndDelete(req.params.id)
+        const routine = await Routine.findOneAndDelete({ _id: req.params.id, user: req.user._id })
 
         if (!routine) {
             return res.status(404).json({ message: "Routine not found" })
@@ -64,7 +64,7 @@ const deleteRoutine = async (req, res) => {
 const updateRoutine = async (req, res) => {
 
     try {
-        const routine = await Routine.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        const routine = await Routine.findOneAndUpdate({ _id: req.params.id, user: req.user._id }, req.body, { new: true })
 
         if (!routine) {
             return res.status(404).json({ message: "Routine not found" })
