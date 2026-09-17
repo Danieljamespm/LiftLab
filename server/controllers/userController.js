@@ -27,7 +27,7 @@ const registerUser = async (req, res) => {
             email: user.email,
         })
     } catch (error) {
-        return res.status(400).json({ message: "Invalid user data" })
+        return res.status(500).json({ message: "Server erroe" })
     }
 
 }
@@ -61,7 +61,7 @@ const loginUser = async (req, res) => {
             token,
         })
     } catch (error) {
-        console.log(error)
+
         return res.status(500).json({ message: "Server error" })
     }
 }
