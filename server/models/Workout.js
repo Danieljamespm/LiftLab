@@ -3,11 +3,11 @@ const mongoose = require("mongoose")
 const setSchema = new mongoose.Schema({
     weight: {
         type: Number,
-        required: true,
+        
     },
     reps: {
         type: Number,
-        required: true,
+       
     },
     completed:{
         type: Boolean,
