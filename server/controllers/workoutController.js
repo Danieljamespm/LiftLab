@@ -87,10 +87,25 @@ const updateWorkout = async (req, res) => {
     }
 }
 
+const deleteWorkout = async (req,res) => {
+    try {
+         const workout = Workout.findOneAndDelete({_id: req.params.id, user: req.user.id})
+         
+         if(!workout){
+            return res.status(404).json({message: "wWorkout not found"})
+         }
+
+         res.status(200).json(workout)
+    } catch (error) {
+        return res,status(500).json({message: "Server Error"})
+    }
+}
+
 
 module.exports = {
     createWorkout,
     getWorkouts,
     getWorkout,
     updateWorkout,
+    deleteWorkout,
 }
