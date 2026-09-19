@@ -34,12 +34,36 @@ const createWorkout = async (req, res) => {
 
 }
 
+const getWorkouts = async (req, res) => {
+    try {
+        const workouts = await Workout.find({ user: req.user._id })
+
+        res.status(200).json(workouts)
+    } catch (error) {
+        return res.status(500).json({ message: "Server Error" })
+    }
+}
+
 const getWorkout = async (req, res) => {
+    try {
+
+        const workout = await Workout.findOne({ _id: req.params.id, user: req.user._id })
+
+        if (!workout) {
+            return res.status(404).json({ message: "Workout not found" })
+        }
+
+        res.status(200).json(workout)
+    } catch (error) {
+        return res.status(500).json({ message: "Server error" })
+    }
+
 
 }
 
 
 module.exports = {
     createWorkout,
+    getWorkouts,
     getWorkout,
 }
