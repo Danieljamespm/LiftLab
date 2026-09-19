@@ -89,15 +89,15 @@ const updateWorkout = async (req, res) => {
 
 const deleteWorkout = async (req,res) => {
     try {
-         const workout = Workout.findOneAndDelete({_id: req.params.id, user: req.user.id})
+         const workout = await Workout.findOneAndDelete({_id: req.params.id, user: req.user._id})
          
          if(!workout){
-            return res.status(404).json({message: "wWorkout not found"})
+            return res.status(404).json({message: "Workout not found"})
          }
 
          res.status(200).json(workout)
     } catch (error) {
-        return res,status(500).json({message: "Server Error"})
+        return res.status(500).json({message: "Server Error"})
     }
 }
 
