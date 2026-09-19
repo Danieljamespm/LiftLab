@@ -4,6 +4,7 @@ const express = require("express")
 const connectDB = require("./config/db")
 const routineRoutes = require("./routes/routineRoutes")
 const userRoutes = require("./routes/userRoutes")
+const workoutRoutes = require("./routes/workoutRoutes")
 
 
 
@@ -18,6 +19,7 @@ app.use(express.json())
 
 app.use("/api/routines", routineRoutes)
 app.use("/api/users", userRoutes)
+app.use("/api/workouts", workoutRoutes)
 
 
 
