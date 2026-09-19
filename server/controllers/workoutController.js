@@ -61,9 +61,36 @@ const getWorkout = async (req, res) => {
 
 }
 
+const updateWorkout = async (req, res) => {
+    try {
+        const { workoutExercises, completedAt } = req.body
+
+        const workout = await Workout.findOne({ _id: req.params.id, user: req.user._id })
+
+        if (!workout) {
+            return res.status(404).json({ message: "Workout not found" })
+        }
+
+        if (workoutExercises !== undefined) {
+            workout.workoutExercises = workoutExercises
+        }
+
+        if (completedAt !== undefined) {
+            workout.completedAt = completedAt
+        }
+
+        await workout.save()
+
+        res.status(200).json(workout)
+    } catch (error) {
+        return res.status(500).json({ message: "Server error" })
+    }
+}
+
 
 module.exports = {
     createWorkout,
     getWorkouts,
     getWorkout,
+    updateWorkout,
 }
