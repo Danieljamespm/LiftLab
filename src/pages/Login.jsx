@@ -5,6 +5,7 @@ const Login = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -23,7 +24,17 @@ const Login = () => {
             })
         })
 
-        console.log(response)
+        const data = await response.json()
+
+        if (!response.ok) {
+            console.log(data.message)
+            return
+
+        }
+
+        localStorage.setItem("user", JSON.stringify(data))
+
+        console.log(data)
 
     }
 
