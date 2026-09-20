@@ -1,8 +1,15 @@
 import React from 'react'
+import Logo from "../assets/Logo.png"
 
-const SplashScreen = () => {
+const SplashScreen = ({ splashFade }) => {
     return (
-        <div>SplashScreen</div>
+        <div className={splashFade ? 'splash-screen fade-out' : 'splash-screen'}>
+            <img
+                className='splash-logo'
+                src={Logo}
+                alt="LiftLab"
+            />
+        </div>
     )
 }
 

@@ -8,17 +8,30 @@ import AscendTest from './pages/AscendTest'
 import WorkoutXTest from './pages/WorkoutXTest'
 import ManageRoutines from './pages/ManageRoutines'
 import Login from './pages/Login'
+import SplashScreen from './components/SplashScreen'
 
 function App() {
 
 
-
+  const [showSplash, setShowSplash] = useState(true)
+  const [splashFade, setSplashFade] = useState(false)
   const [routineExercises, setRoutineExercises] = useState([])
   const [routineName, setRoutineName] = useState("")
   const [savedRoutines, setSavedRoutines] = useState(JSON.parse(localStorage.getItem("savedRoutines")) || [])
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user"))
   )
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSplashFade(true)
+    }, 1900)
+
+    setTimeout(() => {
+      setShowSplash(false)
+    }, 2200)
+  }, [])
+
   useEffect(() => {
     localStorage.setItem("savedRoutines", JSON.stringify(savedRoutines))
   }, [savedRoutines])
@@ -26,6 +39,11 @@ function App() {
 
   console.log(user)
 
+  if (showSplash) {
+    return <SplashScreen
+      splashFade={splashFade}
+    />
+  }
 
   return (
     <BrowserRouter>
