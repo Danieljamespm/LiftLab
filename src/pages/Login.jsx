@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
+import Wordmark from "../assets/Wordmark.png"
 
 const Login = ({ setUser }) => {
 
@@ -45,29 +46,45 @@ const Login = ({ setUser }) => {
     }
 
     return (
-        <>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <input type="text"
-                    value={email}
-                    placeholder='Email'
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <input type="password"
-                    value={password}
-                    placeholder='Password'
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+        <div className='login-page'>
+            <div className='login-container'>
+                <img
+                    className='login-wordmark'
+                    src={Wordmark}
+                    alt="LiftLab" />
+                <h1 className='login-title'>Welcome Back</h1>
+                <p className='login-subtitle'>Sign in to keep moving</p>
+                <form onSubmit={handleSubmit}
+                    className='login-form'
+                >
+                    <label htmlFor="email">Email</label>
+                    <input
+                        className='login-input'
+                        id='email'
+                        type="text"
+                        value={email}
+                        placeholder='Email'
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <label htmlFor="password">Password</label>
+                    <input
+                        className='login-input'
+                        id='password'
+                        type="password"
+                        value={password}
+                        placeholder='Password'
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
 
-                <button>Login</button>
-            </form>
+                    <button className='login-btn'>Login</button>
+                </form>
 
-            {error && <p>{error}</p>}
-
-
+                {error && <p>{error}</p>}
 
 
-        </>
+
+            </div>
+        </div>
     )
 }
 
