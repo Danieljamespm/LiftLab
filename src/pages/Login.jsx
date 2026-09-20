@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
 
 const Login = () => {
 
@@ -7,9 +8,11 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
 
+    const navigate = useNavigate()
+
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        setError("")
 
         const response = await fetch("http://localhost:5000/api/users/login", {
             method: "POST",
@@ -27,12 +30,14 @@ const Login = () => {
         const data = await response.json()
 
         if (!response.ok) {
-            console.log(data.message)
+            setError(data.message)
             return
 
         }
 
         localStorage.setItem("user", JSON.stringify(data))
+
+        navigate("/")
 
         console.log(data)
 
@@ -55,6 +60,8 @@ const Login = () => {
 
                 <button>Login</button>
             </form>
+
+            {error && <p>{error}</p>}
 
 
 
