@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 
-const Login = () => {
+const Login = ({ setUser }) => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -35,6 +35,7 @@ const Login = () => {
 
         }
 
+        setUser(data)
         localStorage.setItem("user", JSON.stringify(data))
 
         navigate("/")

@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router"
 import { useState } from "react"
 import { ChevronDown, ChevronRight } from "lucide-react"
 
-const HomePage = ({ savedRoutines }) => {
+const HomePage = ({ savedRoutines, setUser }) => {
 
 
     const [expandedRoutine, setExpandedRoutine] = useState("")
@@ -10,9 +10,22 @@ const HomePage = ({ savedRoutines }) => {
     console.log(expandedRoutine)
 
     const navigate = useNavigate()
+
+    const handleLogout = () => {
+        localStorage.removeItem("user")
+        setUser(null)
+        navigate("/login")
+    }
+
     return (
 
         <>
+            <div className="back-btn-container">
+                <button className="back-btn"
+                    onClick={handleLogout}
+                >
+                    Logout</button>
+            </div>
             <h1>HomePage</h1>
 
             <Link to={"/build-routine"} className="link-btn">

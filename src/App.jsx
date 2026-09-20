@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
 import { useState, useEffect } from 'react'
 import './App.css'
 import HomePage from './pages/HomePage'
@@ -16,17 +16,30 @@ function App() {
   const [routineExercises, setRoutineExercises] = useState([])
   const [routineName, setRoutineName] = useState("")
   const [savedRoutines, setSavedRoutines] = useState(JSON.parse(localStorage.getItem("savedRoutines")) || [])
-
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  )
   useEffect(() => {
     localStorage.setItem("savedRoutines", JSON.stringify(savedRoutines))
   }, [savedRoutines])
 
+
+  console.log(user)
+
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage
-          savedRoutines={savedRoutines}
-        />} />
+        <Route path="/" element={
+          user ?
+            <HomePage
+              setUser={setUser}
+              savedRoutines={savedRoutines}
+            />
+            :
+            <Navigate to="/login" />
+        } />
+
         <Route path='/build-routine' element={<BuildRoutine
           routineExercises={routineExercises}
           setRoutineExercises={setRoutineExercises}
@@ -43,7 +56,13 @@ function App() {
           setRoutineExercises={setRoutineExercises}
           setRoutineName={setRoutineName} />}
         />
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={
+          user ?
+            <Navigate to="/" />
+            :
+            <Login
+              setUser={setUser}
+            />} />
       </Routes>
     </BrowserRouter>
   )
