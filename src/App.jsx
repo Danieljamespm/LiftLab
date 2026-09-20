@@ -7,6 +7,7 @@ import ExerciseDetails from './pages/ExerciseDetails'
 import AscendTest from './pages/AscendTest'
 import WorkoutXTest from './pages/WorkoutXTest'
 import ManageRoutines from './pages/ManageRoutines'
+import Login from './pages/Login'
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
           setRoutineExercises={setRoutineExercises}
           setRoutineName={setRoutineName} />}
         />
+        <Route path='/login' element={<Login />} />
       </Routes>
     </BrowserRouter>
   )
