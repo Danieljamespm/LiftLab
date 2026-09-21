@@ -80,6 +80,7 @@ function App() {
         <Route path="/" element={
           user ?
             <HomePage
+              user={user}
               setUser={setUser}
               savedRoutines={savedRoutines}
             />
