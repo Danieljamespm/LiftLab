@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router"
 import { useState } from "react"
 import { ChevronDown, ChevronRight } from "lucide-react"
+import StartButton from "../components/StartWorkoutButton"
 
-const HomePage = ({ savedRoutines, setUser }) => {
+const HomePage = ({ savedRoutines, setUser, user }) => {
 
 
     const [expandedRoutine, setExpandedRoutine] = useState("")
@@ -33,19 +34,19 @@ const HomePage = ({ savedRoutines, setUser }) => {
             </Link>
 
             <div>
-                {savedRoutines.map((routines) => (
-                    <div key={routines._id} className='manage-routine '>
-                        <h2>{routines.routineName}</h2>
-                        <p onClick={() => setExpandedRoutine(expandedRoutine === routines.routineName ? "" : routines.routineName)}
+                {savedRoutines.map((routine) => (
+                    <div key={routine._id} className='manage-routine '>
+                        <h2>{routine.routineName}</h2>
+                        <p onClick={() => setExpandedRoutine(expandedRoutine === routine.routineName ? "" : routine.routineName)}
                             className="dropdown"
                         >
-                            {routines.routineExercises.length} Exercises
-                            <span className="drop-arrow">{expandedRoutine === routines.routineName ? <ChevronDown /> : <ChevronRight />}</span>
+                            {routine.routineExercises.length} Exercises
+                            <span className="drop-arrow">{expandedRoutine === routine.routineName ? <ChevronDown /> : <ChevronRight />}</span>
                         </p>
 
-                        {expandedRoutine === routines.routineName && (
+                        {expandedRoutine === routine.routineName && (
                             <div className="exercise-list">
-                                {routines.routineExercises.map((exercise) => (
+                                {routine.routineExercises.map((exercise) => (
                                     <div key={exercise.exerciseId} className="exercise-card">
 
                                         <div className="exercise-thumbnail">
@@ -59,6 +60,7 @@ const HomePage = ({ savedRoutines, setUser }) => {
                                                 <span>{exercise.equipments}</span>
                                                 <span>{exercise.bodyParts}</span>
                                             </div>
+
                                         </div>
 
 
@@ -70,6 +72,11 @@ const HomePage = ({ savedRoutines, setUser }) => {
                                         </button>
                                     </div>
                                 ))}
+                                <StartButton
+                                    user={user}
+                                    routine={routine}
+                                />
+
                             </div>
                         )}
                     </div>
