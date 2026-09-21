@@ -22,6 +22,8 @@ function App() {
     JSON.parse(localStorage.getItem("user"))
   )
 
+  // SPLASH SCREEN 
+
   useEffect(() => {
     setTimeout(() => {
       setSplashFade(true)
@@ -31,6 +33,33 @@ function App() {
       setShowSplash(false)
     }, 2200)
   }, [])
+
+
+  // USER ROUTINE FETCH
+
+  useEffect(() => {
+    if (!user) {
+      return
+    }
+
+    const fetchRoutines = async () => {
+      const response = await fetch('http://localhost:5000/api/routines', {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`
+        },
+
+      })
+      const data = await response.json()
+
+      setSavedRoutines(data)
+    }
+
+    fetchRoutines()
+
+  }, [user])
+
 
   useEffect(() => {
     localStorage.setItem("savedRoutines", JSON.stringify(savedRoutines))

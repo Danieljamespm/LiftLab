@@ -34,7 +34,7 @@ const HomePage = ({ savedRoutines, setUser }) => {
 
             <div>
                 {savedRoutines.map((routines) => (
-                    <div className='manage-routine '>
+                    <div key={routines._id} className='manage-routine '>
                         <h2>{routines.routineName}</h2>
                         <p onClick={() => setExpandedRoutine(expandedRoutine === routines.routineName ? "" : routines.routineName)}
                             className="dropdown"
