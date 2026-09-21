@@ -2,13 +2,33 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router'
 
 
-const ManageRoutines = ({ routineExercises, routineName, savedRoutines, setSavedRoutines, setRoutineExercises, setRoutineName }) => {
+const ManageRoutines = ({ routineExercises, routineName, savedRoutines, setSavedRoutines, setRoutineExercises, setRoutineName, user }) => {
 
     const navigate = useNavigate()
 
 
-    const handleSavedRoutines = () => {
-        setSavedRoutines([...savedRoutines, { routineName, routineExercises }])
+    const handleSavedRoutines = async () => {
+        const response = await fetch('http://localhost:5000/api/routines', {
+            method: "POST",
+            headers: {
+                'Content-Type': "application/json",
+                Authorization: `Bearer ${user.token}`
+            },
+
+            body: JSON.stringify({
+                routineName,
+                routineExercises
+            })
+        })
+
+        const data = await response.json()
+
+        if (!response.ok) {
+            console.log(data.message)
+            return
+        }
+
+        setSavedRoutines([...savedRoutines, data])
 
         setRoutineExercises([])
         setRoutineName("")

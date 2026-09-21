@@ -96,6 +96,7 @@ function App() {
         <Route path='/ascend-test' element={<AscendTest />} />
         <Route path='/workoutx-test' element={<WorkoutXTest />} />
         <Route path='/routines' element={<ManageRoutines
+          user={user}
           routineExercises={routineExercises}
           routineName={routineName}
           savedRoutines={savedRoutines}
