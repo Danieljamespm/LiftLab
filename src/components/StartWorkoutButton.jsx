@@ -1,6 +1,9 @@
 import React from 'react'
+import { Navigate, useNavigate } from 'react-router'
 
 const StartWorkoutButton = ({ routine, user }) => {
+
+    const navigate = useNavigate()
 
     const handleStartWorkout = async () => {
         const workoutExercises = routine.routineExercises.map((exercise) => ({
@@ -25,6 +28,12 @@ const StartWorkoutButton = ({ routine, user }) => {
 
         const data = await response.json()
         console.log(data)
+
+        if (!response.ok) {
+            console.log(data.message)
+            return
+        }
+        navigate(`/workout/${data._id}`)
     }
 
     return (

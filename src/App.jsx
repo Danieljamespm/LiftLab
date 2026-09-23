@@ -4,7 +4,7 @@ import './App.css'
 import HomePage from './pages/HomePage'
 import BuildRoutine from './pages/BuildRoutine'
 import ExerciseDetails from './pages/ExerciseDetails'
-
+import WorkoutPage from './pages/WorkoutPage'
 import ManageRoutines from './pages/ManageRoutines'
 import Login from './pages/Login'
 import SplashScreen from './components/SplashScreen'
@@ -93,7 +93,10 @@ function App() {
           routineName={routineName}
           setRoutineName={setRoutineName} />} />
         <Route path='/exercise/:id' element={<ExerciseDetails />} />
-
+        <Route path='/workout/:id' element={<WorkoutPage
+          user={user}
+        />}
+        />
         <Route path='/routines' element={<ManageRoutines
           user={user}
           routineExercises={routineExercises}
