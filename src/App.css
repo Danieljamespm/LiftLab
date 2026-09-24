@@ -1,3 +1,15 @@
+/* Chrome, Edge, Safari */
+.exercise-input input[type="number"]::-webkit-inner-spin-button,
+.exercise-input input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.exercise-input input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
 * {
     box-sizing: border-box;
 }
@@ -488,4 +500,41 @@ form {
     display: inline-block;
     width: fit-content;
     margin: 0 auto;
+}
+
+
+/* WORKOUT PAGE */
+
+.exercise-data {
+    border: 1px solid grey;
+}
+
+.exercise-label {
+    padding: 6px 0;
+}
+
+.exercise-input {
+    padding: 5px 0;
+}
+
+.exercise-label,
+.exercise-input {
+    display: grid;
+    grid-template-columns: 40px 1fr 1fr 40px;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+
+}
+
+.exercise-input input[type="number"] {
+    width: 50px;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+
+
+
 }

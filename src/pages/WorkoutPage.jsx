@@ -81,9 +81,23 @@ const WorkoutPage = ({ user }) => {
                     <div key={exercise._id}>
                         <h2>{exercise.name}</h2>
 
-                        <div>
-                            {exercise.sets.map((_, index) => (
-                                <div key={index}>Set {index + 1}</div>
+                        <div className='exercise-data'>
+
+                            <div className='exercise-label'>
+                                <span>SET</span>
+                                <span>WEIGHT</span>
+                                <span>REPS</span>
+                                <span> ✓</span>
+                            </div>
+                            {exercise.sets.map((set, index) => (
+                                <div key={index}>
+                                    <div className='exercise-input'>
+                                        <span>{index + 1}</span>
+                                        <input type="number" value={set.weight} />
+                                        <input type="number" value={set.reps} />
+                                        <input type="checkbox" value={set.completed} />
+                                    </div>
+                                </div>
                             ))}
                         </div>
                         <button
