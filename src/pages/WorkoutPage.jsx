@@ -79,7 +79,7 @@ const WorkoutPage = ({ user }) => {
             <div>
                 {workout.workoutExercises.map((exercise) => (
                     <div key={exercise._id}>
-                        <h2>{exercise.name}</h2>
+                        <h2 className='exercise-title'>{exercise.name}</h2>
 
                         <div className='exercise-data'>
 
@@ -100,7 +100,7 @@ const WorkoutPage = ({ user }) => {
                                 </div>
                             ))}
                         </div>
-                        <button
+                        <button className='add-set-btn'
                             onClick={() => handleAddSet(exercise._id)}
                         >
                             + Add Set

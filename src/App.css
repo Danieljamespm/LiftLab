@@ -507,10 +507,17 @@ form {
 
 .exercise-data {
     border: 1px solid grey;
+    margin: 0 10px;
+    border-radius: 10px;
 }
 
 .exercise-label {
     padding: 6px 0;
+
+}
+
+.exercise-title {
+    text-transform: capitalize;
 }
 
 .exercise-input {
@@ -534,7 +541,18 @@ form {
     color: white;
     font-size: 1rem;
     text-align: center;
+}
 
+.exercise-input input[type="checkbox"] {
+    accent-color: var(--green-muted);
+}
 
-
+.add-set-btn {
+    padding: 8px;
+    width: 50%;
+    margin: 10px;
+    border-radius: 20px;
+    border: none;
+    background-color: var(--green-muted);
+    color: black;
 }
