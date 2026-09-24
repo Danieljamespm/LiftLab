@@ -54,8 +54,8 @@ const WorkoutPage = ({ user }) => {
                     sets: [
                         ...exercise.sets,
                         {
-                            weight: 0,
-                            reps: 0,
+                            weight: "",
+                            reps: "",
                             completed: false
                         }
                     ]
@@ -65,8 +65,51 @@ const WorkoutPage = ({ user }) => {
         })
 
         setWorkout({ ...workout, workoutExercises: updatedExercises })
+            
 
+    }
 
+    const updateSetWeight = (exercise, setIndex, newWeight) => {
+
+        const updatedExercises = workout.workoutExercises.map((currentExercise) => {
+            if(exercise._id === currentExercise._id){
+           const updatedSets = currentExercise.sets.map((currentSet, index) => {
+                    if(setIndex === index) {
+                   return  {...currentSet, weight: newWeight}
+                    }
+                    return currentSet
+                })
+                return {
+                    ...currentExercise,
+                    sets: updatedSets
+                }
+                    
+            }
+            return currentExercise
+        })
+        setWorkout({...workout, workoutExercises: updatedExercises})
+    }
+
+    const updateSetReps = (exercise, setIndex, newReps) => {
+        const updatedExercises = workout.workoutExercises.map((currentExercise) => {
+            if(exercise._id === currentExercise._id){
+                const updatedSets = currentExercise.sets.map((currentSet, index) => {
+                    if(setIndex === index){
+                        return {
+                            ...currentSet,
+                            reps: newReps
+                        }
+                    }
+                    return currentSet
+                })
+                return {
+                    ...currentExercise,
+                    sets: updatedSets
+                }
+            }
+            return currentExercise
+        })
+        setWorkout({...workout, workoutExercises: updatedExercises})
     }
 
 
@@ -93,9 +136,25 @@ const WorkoutPage = ({ user }) => {
                                 <div key={index}>
                                     <div className='exercise-input'>
                                         <span>{index + 1}</span>
-                                        <input type="number" value={set.weight} />
-                                        <input type="number" value={set.reps} />
-                                        <input type="checkbox" value={set.completed} />
+                                        
+                                        <input 
+                                        type="number" 
+                                        value={set.weight} 
+                                        placeholder='0'
+                                        onChange={(e) => updateSetWeight(exercise, index, e.target.value)}
+                                        />
+                                        
+                                        <input 
+                                        type="number" 
+                                        value={set.reps}
+                                        placeholder='0'  
+                                        onChange={(e) => updateSetReps(exercise, index, e.target.value)}
+                                        />
+                                        
+                                        <input 
+                                        type="checkbox" 
+                                        value={set.completed} 
+                                        />
                                     </div>
                                 </div>
                             ))}
