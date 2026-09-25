@@ -44,6 +44,8 @@ const WorkoutPage = ({ user }) => {
         return <p>Loading...</p>
     }
 
+
+
     const handleAddSet = (workoutExerciseId) => {
 
         const updatedExercises = workout.workoutExercises.map((exercise) => {
@@ -132,6 +134,27 @@ const WorkoutPage = ({ user }) => {
             return currentExercise
         })
         setWorkout({ ...workout, workoutExercises: updatedExercises })
+        saveWorkout(updatedExercises)
+    }
+
+    const saveWorkout = async (updatedExercises) => {
+        console.log("SAVE WORKOUT FIRED", updatedExercises)
+        try {
+            const response = await fetch(`http://localhost:5000/api/workouts/${id}`, {
+                method: "PATCH",
+                headers: {
+                    'Content-Type': "application/json",
+                    Authorization: `Bearer ${user.token}`
+                },
+                body: JSON.stringify({
+                    workoutExercises: updatedExercises
+                })
+            })
+
+
+        } catch (error) {
+
+        }
     }
 
 
