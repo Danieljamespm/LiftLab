@@ -6,6 +6,9 @@ import { useParams } from 'react-router'
 const WorkoutPage = ({ user }) => {
 
     const [workout, setWorkout] = useState(null)
+    const [selectedSet, setSelectedSet] = useState(null)
+
+    console.log("SELECTED SET:", selectedSet)
 
     const { id } = useParams()
 
@@ -138,7 +141,7 @@ const WorkoutPage = ({ user }) => {
     }
 
     const saveWorkout = async (updatedExercises) => {
-        console.log("SAVE WORKOUT FIRED", updatedExercises)
+
         try {
             const response = await fetch(`http://localhost:5000/api/workouts/${id}`, {
                 method: "PATCH",
@@ -155,6 +158,23 @@ const WorkoutPage = ({ user }) => {
         } catch (error) {
 
         }
+    }
+
+    const deleteSet = async (exercise, setIndex) => {
+        const updatedExercises = workout.workoutExercises.map((currentExercise) => {
+            if (exercise._id === currentExercise._id) {
+                const updatedSets = currentExercise.sets.filter((currentSet, index) => {
+                    return index !== setIndex
+                })
+                return {
+                    ...currentExercise,
+                    sets: updatedSets
+                }
+            } return currentExercise
+
+        })
+        setWorkout({ ...workout, workoutExercises: updatedExercises })
+        saveWorkout(updatedExercises)
     }
 
 
@@ -180,18 +200,35 @@ const WorkoutPage = ({ user }) => {
                             {exercise.sets.map((set, index) => (
                                 <div key={index}>
                                     <div className='exercise-input'>
-                                        <span>{index + 1}</span>
+                                        <div className='set-number-container'>
+                                            <button
+                                                type='button'
+                                                onClick={() => setSelectedSet(
+                                                    selectedSet &&
+                                                        selectedSet.exerciseId === exercise._id &&
+                                                        selectedSet.setIndex === index
+                                                        ? null
+                                                        : {
+                                                            exerciseId: exercise._id,
+                                                            setIndex: index
+                                                        }
+                                                )}
+                                            >
+                                                {index + 1}
+                                            </button>
+
+                                        </div>
 
                                         <input
                                             type="number"
-                                            value={set.weight}
+                                            value={set.weight ?? ""}
                                             placeholder='0'
                                             onChange={(e) => updateSetWeight(exercise, index, e.target.value)}
                                         />
 
                                         <input
                                             type="number"
-                                            value={set.reps}
+                                            value={set.reps ?? ""}
                                             placeholder='0'
                                             onChange={(e) => updateSetReps(exercise, index, e.target.value)}
                                         />
@@ -202,6 +239,18 @@ const WorkoutPage = ({ user }) => {
                                             onChange={(e) => updateSetCompleted(exercise, index, e.target.checked)}
                                         />
                                     </div>
+                                    {selectedSet &&
+                                        selectedSet.exerciseId === exercise._id &&
+                                        selectedSet.setIndex === index &&
+                                        (
+                                            <button
+                                                type='button'
+                                                className='delete-set-btn'
+                                                onClick={() => deleteSet(exercise, index)}
+                                            >
+                                                Delete Set {index + 1}
+                                            </button>
+                                        )}
                                 </div>
                             ))}
                         </div>

@@ -554,3 +554,34 @@ form {
     background-color: var(--green-muted);
     color: black;
 }
+
+.set-number-container {
+    position: relative;
+
+}
+
+.set-number-container button {
+    cursor: pointer;
+}
+
+.delete-set-btn {
+
+    display: block;
+    width: calc(100% - 20px);
+    margin: 6px auto;
+    padding: 6px;
+
+    background: transparent;
+    color: #ff6b6b;
+    border: 1px solid #ff6b6b;
+    border-radius: 6px;
+
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.delete-set-btn:hover {
+    background-color: #ff6b6b;
+    color: black;
+}
