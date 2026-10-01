@@ -87,18 +87,39 @@ const updateWorkout = async (req, res) => {
     }
 }
 
-const deleteWorkout = async (req,res) => {
+const deleteWorkout = async (req, res) => {
     try {
-         const workout = await Workout.findOneAndDelete({_id: req.params.id, user: req.user._id})
-         
-         if(!workout){
-            return res.status(404).json({message: "Workout not found"})
-         }
+        const workout = await Workout.findOneAndDelete({ _id: req.params.id, user: req.user._id })
 
-         res.status(200).json(workout)
+        if (!workout) {
+            return res.status(404).json({ message: "Workout not found" })
+        }
+
+        res.status(200).json(workout)
     } catch (error) {
-        return res.status(500).json({message: "Server Error"})
+        return res.status(500).json({ message: "Server Error" })
     }
+}
+
+
+const getPreviousExercises = async (req, res) => {
+    const workout = await Workout.findOne({
+        user: req.user._id,
+        "workoutExercises.exerciseId": req.params.exerciseId,
+        completedAt: { $ne: null }
+    }).sort({
+        completedAt: -1
+    })
+
+    if (!workout) {
+        return res.status(404).json({ message: "No previous exercise found" })
+    }
+
+    const previousExercise = workout.workoutExercises.find((exercise) => {
+        return exercise.exerciseId === req.params.exerciseId
+    })
+
+    res.status(200).json(previousExercise.sets)
 }
 
 
@@ -108,4 +129,5 @@ module.exports = {
     getWorkout,
     updateWorkout,
     deleteWorkout,
+    getPreviousExercises,
 }

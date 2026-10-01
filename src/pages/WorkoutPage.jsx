@@ -177,6 +177,19 @@ const WorkoutPage = ({ user }) => {
         saveWorkout(updatedExercises)
     }
 
+    const finishWorkout = async () => {
+        const response = await fetch(`http://localhost:5000/api/workouts/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${user.token}`
+            },
+            body: JSON.stringify({
+                completedAt: new Date()
+            })
+        })
+    }
+
 
 
 
@@ -262,6 +275,13 @@ const WorkoutPage = ({ user }) => {
                         </button>
                     </div>
                 ))}
+
+                <button
+                    type='button'
+                    onClick={finishWorkout}
+                >
+                    Finish Workout
+                </button>
             </div>
         </div>
     )

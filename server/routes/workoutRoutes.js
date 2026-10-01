@@ -7,6 +7,7 @@ const {
     getWorkout,
     updateWorkout,
     deleteWorkout,
+    getPreviousExercises,
 } = require("../controllers/workoutController")
 const protect = require("../middleware/authMiddleware")
 
@@ -17,5 +18,6 @@ router.get("/:id", protect, getWorkout)
 router.post("/", protect, createWorkout)
 router.patch("/:id", protect, updateWorkout)
 router.delete("/:id", protect, deleteWorkout)
+router.get("/previous/:exerciseId", protect, getPreviousExercises)
 
 module.exports = router
