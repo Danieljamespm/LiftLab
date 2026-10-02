@@ -7,10 +7,31 @@ const WorkoutPage = ({ user }) => {
 
     const [workout, setWorkout] = useState(null)
     const [selectedSet, setSelectedSet] = useState(null)
+    const [previousExercises, setPreviousExercises] = useState({})
 
-    console.log("SELECTED SET:", selectedSet)
+
 
     const { id } = useParams()
+
+    console.log("PREVIOUS EXERCISES:", previousExercises)
+
+    const getPreviousExercise = async (exerciseId) => {
+        const response = await fetch(`http://localhost:5000/api/workouts/previous/${exerciseId}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${user.token}`
+            },
+        })
+        const data = await response.json()
+
+        setPreviousExercises((current) => {
+            return {
+                ...current, [exerciseId]: data
+            }
+        })
+    }
+
 
 
     useEffect(() => {
@@ -33,6 +54,10 @@ const WorkoutPage = ({ user }) => {
                 }
                 console.log(data)
                 setWorkout(data)
+
+                data.workoutExercises.forEach((exercise) => {
+                    getPreviousExercise(exercise.exerciseId)
+                })
 
 
             } catch (error) {
@@ -189,6 +214,9 @@ const WorkoutPage = ({ user }) => {
             })
         })
     }
+
+
+
 
 
 
