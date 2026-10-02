@@ -105,7 +105,12 @@ const deleteWorkout = async (req, res) => {
 const getPreviousExercises = async (req, res) => {
     const workout = await Workout.findOne({
         user: req.user._id,
-        "workoutExercises.exerciseId": req.params.exerciseId,
+        workoutExercises: {
+            $elemMatch: {
+                exerciseId: req.params.exerciseId,
+                "sets.completed": true
+            }
+        },
         completedAt: { $ne: null }
     }).sort({
         completedAt: -1
