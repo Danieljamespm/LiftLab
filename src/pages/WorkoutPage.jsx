@@ -13,7 +13,7 @@ const WorkoutPage = ({ user }) => {
 
     const { id } = useParams()
 
-    console.log("PREVIOUS EXERCISES:", previousExercises)
+
 
     const getPreviousExercise = async (exerciseId) => {
         const response = await fetch(`http://localhost:5000/api/workouts/previous/${exerciseId}`, {
@@ -24,6 +24,10 @@ const WorkoutPage = ({ user }) => {
             },
         })
         const data = await response.json()
+
+        if (!response.ok) {
+            return
+        }
 
         setPreviousExercises((current) => {
             return {
@@ -234,66 +238,75 @@ const WorkoutPage = ({ user }) => {
 
                             <div className='exercise-label'>
                                 <span>SET</span>
+                                <span>PREV</span>
                                 <span>WEIGHT</span>
                                 <span>REPS</span>
                                 <span> ✓</span>
                             </div>
-                            {exercise.sets.map((set, index) => (
-                                <div key={index}>
-                                    <div className='exercise-input'>
-                                        <div className='set-number-container'>
-                                            <button
-                                                type='button'
-                                                onClick={() => setSelectedSet(
-                                                    selectedSet &&
-                                                        selectedSet.exerciseId === exercise._id &&
-                                                        selectedSet.setIndex === index
-                                                        ? null
-                                                        : {
-                                                            exerciseId: exercise._id,
-                                                            setIndex: index
-                                                        }
-                                                )}
-                                            >
-                                                {index + 1}
-                                            </button>
+                            {exercise.sets.map((set, index) => {
+                                const previousSet = previousExercises[exercise.exerciseId]?.[index]
 
+                                return (
+                                    <div key={index}>
+                                        <div className='exercise-input'>
+                                            <div className='set-number-container'>
+                                                <button
+                                                    type='button'
+                                                    onClick={() => setSelectedSet(
+                                                        selectedSet &&
+                                                            selectedSet.exerciseId === exercise._id &&
+                                                            selectedSet.setIndex === index
+                                                            ? null
+                                                            : {
+                                                                exerciseId: exercise._id,
+                                                                setIndex: index
+                                                            }
+                                                    )}
+                                                >
+                                                    {index + 1}
+                                                </button>
+
+                                            </div>
+
+                                            <div className='previous-set'>
+                                                {previousSet ? `${previousSet.weight ? previousSet.weight : "BW"}  x ${previousSet.reps}` : "-"}
+                                            </div>
+
+                                            <input
+                                                type="number"
+                                                value={set.weight ?? ""}
+                                                placeholder='0'
+                                                onChange={(e) => updateSetWeight(exercise, index, e.target.value)}
+                                            />
+
+                                            <input
+                                                type="number"
+                                                value={set.reps ?? ""}
+                                                placeholder='0'
+                                                onChange={(e) => updateSetReps(exercise, index, e.target.value)}
+                                            />
+
+                                            <input
+                                                type="checkbox"
+                                                checked={set.completed}
+                                                onChange={(e) => updateSetCompleted(exercise, index, e.target.checked)}
+                                            />
                                         </div>
-
-                                        <input
-                                            type="number"
-                                            value={set.weight ?? ""}
-                                            placeholder='0'
-                                            onChange={(e) => updateSetWeight(exercise, index, e.target.value)}
-                                        />
-
-                                        <input
-                                            type="number"
-                                            value={set.reps ?? ""}
-                                            placeholder='0'
-                                            onChange={(e) => updateSetReps(exercise, index, e.target.value)}
-                                        />
-
-                                        <input
-                                            type="checkbox"
-                                            checked={set.completed}
-                                            onChange={(e) => updateSetCompleted(exercise, index, e.target.checked)}
-                                        />
+                                        {selectedSet &&
+                                            selectedSet.exerciseId === exercise._id &&
+                                            selectedSet.setIndex === index &&
+                                            (
+                                                <button
+                                                    type='button'
+                                                    className='delete-set-btn'
+                                                    onClick={() => deleteSet(exercise, index)}
+                                                >
+                                                    Delete Set {index + 1}
+                                                </button>
+                                            )}
                                     </div>
-                                    {selectedSet &&
-                                        selectedSet.exerciseId === exercise._id &&
-                                        selectedSet.setIndex === index &&
-                                        (
-                                            <button
-                                                type='button'
-                                                className='delete-set-btn'
-                                                onClick={() => deleteSet(exercise, index)}
-                                            >
-                                                Delete Set {index + 1}
-                                            </button>
-                                        )}
-                                </div>
-                            ))}
+                                )
+                            })}
                         </div>
                         <button className='add-set-btn'
                             onClick={() => handleAddSet(exercise._id)}
@@ -305,6 +318,7 @@ const WorkoutPage = ({ user }) => {
                 ))}
 
                 <button
+                    className='finish-btn'
                     type='button'
                     onClick={finishWorkout}
                 >

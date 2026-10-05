@@ -117,7 +117,7 @@ const getPreviousExercises = async (req, res) => {
     })
 
     if (!workout) {
-        return res.status(404).json({ message: "No previous exercise found" })
+        return res.status(200).json([])
     }
 
     const previousExercise = workout.workoutExercises.find((exercise) => {

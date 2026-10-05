@@ -525,7 +525,7 @@ form {
 .exercise-label,
 .exercise-input {
     display: grid;
-    grid-template-columns: 40px 1fr 1fr 40px;
+    grid-template-columns: 40px 1fr 1fr 1fr 40px;
     align-items: center;
     justify-items: center;
     width: 100%;
@@ -553,6 +553,7 @@ form {
     border: none;
     background-color: var(--green-muted);
     color: black;
+    cursor: pointer;
 }
 
 .set-number-container {
@@ -584,4 +585,27 @@ form {
 .delete-set-btn:hover {
     background-color: #ff6b6b;
     color: black;
+}
+
+.previous-set {
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
+
+.finish-btn {
+    padding: 8px;
+    width: 50%;
+    margin: 10px;
+    border-radius: 20px;
+    border: 1px solid var(--green-muted);
+    background-color: transparent;
+    color: var(--green-muted);
+}
+
+.finish-btn:hover {
+
+    border: none;
+    background-color: var(--green-muted);
+    color: black;
+    cursor: pointer;
 }
