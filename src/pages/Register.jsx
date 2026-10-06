@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import Wordmark from "../assets/Wordmark.png"
-import { useNavigate } from 'react-router'
+import { useNavigate, Link } from 'react-router'
 
 const Register = ({ setUser }) => {
 
@@ -127,6 +127,10 @@ const Register = ({ setUser }) => {
                     )}
                     <button type='submit' className='register-btn' disabled={success}>{success ? "Account Created ✓" : "Sign Up"} </button>
                 </form>
+                <div>
+                    <p>Already have an account?</p>
+                    <Link to={"/login"} className='signup-link'> Login</Link>
+                </div>
             </div>
 
 
