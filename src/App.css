@@ -83,7 +83,7 @@ body {
 }
 
 
-/* LOGIN PAGE */
+/* LOGIN PAGE/REGISTER PAGE */
 .login-wordmark,
 .register-wordmark {
     width: 250px;
@@ -447,6 +447,7 @@ form {
 
 .back-btn-container {
     display: flex;
+    padding: 10px;
 }
 
 .back-btn {
