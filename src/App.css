@@ -184,6 +184,12 @@ body {
     color: rgb(199, 18, 18);
 }
 
+.signup-link {
+    text-decoration: none;
+    color: var(--green-muted);
+    font-weight: bold;
+}
+
 
 
 /* EXERCISE CARD */
