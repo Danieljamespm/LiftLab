@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { useNavigate } from 'react-router'
+import { useNavigate, Link } from 'react-router'
 import Wordmark from "../assets/Wordmark.png"
 
 const Login = ({ setUser }) => {
@@ -82,12 +82,18 @@ const Login = ({ setUser }) => {
                     <button className='login-btn'>Login</button>
                 </form>
 
-                {error && <p>{error}</p>}
-
-
-
+                <div>
+                    <p>Not a member?</p>
+                    <Link to={"/register"}> Sign up</Link>
+                </div>
             </div>
+
+            {error && <p>{error}</p>}
+
+
+
         </div>
+
     )
 }
 
