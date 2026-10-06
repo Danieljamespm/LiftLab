@@ -84,7 +84,7 @@ const Login = ({ setUser }) => {
 
                 <div>
                     <p>Not a member?</p>
-                    <Link to={"/register"}> Sign up</Link>
+                    <Link to={"/register"} className='signup-link'> Sign up</Link>
                 </div>
             </div>
 
