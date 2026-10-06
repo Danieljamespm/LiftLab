@@ -8,6 +8,7 @@ import WorkoutPage from './pages/WorkoutPage'
 import ManageRoutines from './pages/ManageRoutines'
 import Login from './pages/Login'
 import SplashScreen from './components/SplashScreen'
+import Register from './pages/Register'
 
 function App() {
 
@@ -113,6 +114,9 @@ function App() {
             <Login
               setUser={setUser}
             />} />
+        <Route path='/register' element={<Register
+          setUser={setUser}
+        />} />
       </Routes>
     </BrowserRouter>
   )
